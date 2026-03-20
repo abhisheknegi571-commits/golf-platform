@@ -13,7 +13,7 @@ const app = express();
 
 app.use(
   session({
-    secret: "secretkey",
+    secret: process.env.SESSION_SECRET || "secret",
 
     resave: false,
 
@@ -37,7 +37,6 @@ app.get("/", (req, res) => {
   res.send("Server running");
 });
 
-
 //score routes
 app.use(scoreRoutes);
 
@@ -52,7 +51,7 @@ mongoose
   });
 
 //server
-const PORT=process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Server started");
 });
