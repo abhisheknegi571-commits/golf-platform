@@ -1,0 +1,192 @@
+<!-- <h2>Signup</h2>
+
+<form action="/signup" method="POST">
+
+<input type="text" name="name" placeholder="Name">
+
+<br><br>
+
+<input type="email" name="email" placeholder="Email">
+
+<br><br>
+
+<input type="password" name="password" placeholder="Password">
+
+<br><br>
+
+<button type="submit">Signup</button>
+
+</form>
+
+<a href="/login">Login</a> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #0d0f14;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background-image:
+        radial-gradient(ellipse 70% 50% at 85% 0%, rgba(167,139,250,0.13) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 15% 100%, rgba(91,106,249,0.09) 0%, transparent 60%);
+    }
+
+    .card {
+      background: #13161e;
+      border: 1px solid #252a38;
+      border-radius: 18px;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 380px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: -80px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(167,139,250,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #a78bfa;
+      margin-bottom: 0.4rem;
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #e8eaf2;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      background: #0d0f14;
+      border: 1px solid #252a38;
+      border-radius: 10px;
+      color: #e8eaf2;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input::placeholder {
+      color: #6b7280;
+    }
+
+    input:focus {
+      border-color: #a78bfa;
+      box-shadow: 0 0 0 3px rgba(167,139,250,0.18);
+    }
+
+    br { display: none; }
+
+    button[type="submit"] {
+      width: 100%;
+      background: #a78bfa;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+      box-shadow: 0 4px 20px rgba(167,139,250,0.28);
+    }
+
+    button[type="submit"]:hover {
+      background: #b99ffb;
+      box-shadow: 0 6px 28px rgba(167,139,250,0.42);
+      transform: translateY(-1px);
+    }
+
+    button[type="submit"]:active {
+      transform: translateY(0);
+    }
+
+    .footer {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: #6b7280;
+    }
+
+    .footer a {
+      color: #a78bfa;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .footer a:hover {
+      color: #5b6af9;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <p class="label">Create account</p>
+    <h2>Signup</h2>
+
+    <form action="/signup" method="POST">
+      <input type="text" name="name" placeholder="Name">
+      <br><br>
+      <input type="email" name="email" placeholder="Email">
+      <br><br>
+      <input type="password" name="password" placeholder="Password">
+      <br><br>
+      <button type="submit">Signup →</button>
+    </form>
+
+    <div class="footer">
+      Already have an account? <a href="/login">Login</a>
+    </div>
+  </div>
+
+</body>
+</html>

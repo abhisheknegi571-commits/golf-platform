@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="/style.css">
+
+<% if(typeof error !== 'undefined'){ %>
+
+<p style="color:red">
+
+<%= error %>
+
+</p>
+
+<% } %>
+
+<h2>Dashboard</h2>
+
+<h3>Add Score</h3>
+
+<form action="/add-score" method="POST">
+
+<input type="text" name="courseName" placeholder="Course name" required>
+
+<br><br>
+
+<input type="number" name="score" placeholder="Score" required>
+
+<br><br>
+
+<button>Add Score</button>
+
+</form>
+
+<hr>
+
+<h3>Your Scores</h3>
+
+<% scores.forEach(score=>{ %>
+
+<p>
+
+Course:
+<%= score.courseName %>
+
+Score:
+<%= score.score %>
+
+<a href="/delete-score/<%= score._id %>">
+
+Delete
+
+</a>
+
+</p>
+
+<% }) %>
+
+<hr>
+
+<h3>Average Score:
+
+<%= average %>
+
+</h3>
+
+<br>
+
+<a href="/logout">Logout</a>
