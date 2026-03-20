@@ -5,6 +5,8 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import authRoutes from "./routes/authRoutes.js";
 import scoreRoutes from "./routes/scoreRoutes.js";
+import User from "./models/User.js";
+import Score from "./models/Score.js";
 import { isLoggedIn } from "./middleware/authMiddleware.js";
 
 dotenv.config();
@@ -35,6 +37,21 @@ app.use(authRoutes);
 //home route
 app.get("/", (req, res) => {
   res.render("home");
+});
+
+//admin route
+app.get("/admin",isLoggedIn, async (req, res) => {
+  const users = await User.find();
+
+  const scores = await Score.find().populate("userId");
+
+  res.render("admin", { users, scores });
+});
+
+//admin delete
+app.get("/admin/delete/:id",isLoggedIn, async (req, res) => {
+  await Score.findByIdAndDelete(req.params.id);
+  res.redirect("/admin");
 });
 
 //score routes
