@@ -34,7 +34,7 @@ app.use(authRoutes);
 
 //home route
 app.get("/", (req, res) => {
-  res.send("Server running");
+  res.render("home");
 });
 
 //score routes

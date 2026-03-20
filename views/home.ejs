@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golf Score Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #0d0f14;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(52,211,153,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 10% 100%, rgba(91,106,249,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 90% 90%, rgba(167,139,250,0.06) 0%, transparent 60%);
+    }
+
+    .wrapper {
+      text-align: center;
+      max-width: 440px;
+      width: 100%;
+    }
+
+    /* Golf ball decoration */
+    .ball {
+      width: 64px;
+      height: 64px;
+      background: radial-gradient(circle at 35% 35%, #ffffff, #c8d8c8);
+      border-radius: 50%;
+      margin: 0 auto 2rem;
+      position: relative;
+      box-shadow:
+        inset -4px -4px 10px rgba(0,0,0,0.25),
+        0 0 40px rgba(52,211,153,0.2);
+    }
+
+    /* dimple dots */
+    .ball::before,
+    .ball::after {
+      content: '';
+      position: absolute;
+      background: rgba(0,0,0,0.12);
+      border-radius: 50%;
+    }
+    .ball::before {
+      width: 6px; height: 6px;
+      top: 20px; left: 18px;
+    }
+    .ball::after {
+      width: 5px; height: 5px;
+      top: 30px; left: 34px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #34d399;
+      background: rgba(52,211,153,0.1);
+      border: 1px solid rgba(52,211,153,0.25);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #e8eaf2;
+      margin-bottom: 1rem;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #34d399 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    br { display: none; }
+
+    a[href="/signup"] {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #34d399;
+      color: #0d1f17;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 0.8rem 1.6rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+      box-shadow: 0 4px 20px rgba(52,211,153,0.28);
+    }
+
+    a[href="/signup"]::after { content: '→'; }
+
+    a[href="/signup"]:hover {
+      background: #4ade80;
+      box-shadow: 0 6px 28px rgba(52,211,153,0.42);
+      transform: translateY(-1px);
+    }
+
+    a[href="/login"] {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: transparent;
+      color: #e8eaf2;
+      text-decoration: none;
+      border: 1px solid #252a38;
+      border-radius: 10px;
+      padding: 0.8rem 1.6rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: border-color 0.2s, color 0.2s, transform 0.1s;
+    }
+
+    a[href="/login"]:hover {
+      border-color: #5b6af9;
+      color: #a78bfa;
+      transform: translateY(-1px);
+    }
+
+    a[href="/signup"]:active,
+    a[href="/login"]:active {
+      transform: translateY(0);
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #1a1e2a;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #e8eaf2;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: #6b7280;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="ball"></div>
+    <span class="badge">⛳ Golf Score Tracker</span>
+
+    <h1>Golf Score <span>Platform</span></h1>
+
+    <p>Track your latest golf scores</p>
+
+    <div class="buttons">
+      <a href="/signup">Signup</a>
+      <br><br>
+      <a href="/login">Login</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">18</div>
+        <div class="stat-label">Holes</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Rounds</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Goal</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
